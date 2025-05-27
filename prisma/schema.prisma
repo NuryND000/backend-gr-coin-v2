@@ -2,11 +2,9 @@ generator client {
   provider = "prisma-client-js"
 }
 
-const DATABASE_URL="mysql://root:1234@localhost:3306/gr_coins";
-
 datasource db {
   provider = "mysql"
-  url      = DATABASE_URL
+  url      = env("DATABASE_URL")
 }
 
 model User {
