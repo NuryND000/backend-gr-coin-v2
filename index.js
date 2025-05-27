@@ -437,4 +437,4 @@ app.get("/complaint/all", authMiddleware, async (req, res) => {
 });
 
 // ========== SERVER START ==========
-app.listen(3000, () => console.log("Server running on port 3000"));
+app.listen(1550, () => console.log("Server running on port 1550"));
