@@ -9,6 +9,7 @@ CREATE TABLE `User` (
     `password` VARCHAR(191) NOT NULL,
     `role` VARCHAR(191) NOT NULL,
 
+    UNIQUE INDEX `User_username_key`(`username`),
     UNIQUE INDEX `User_tlp_key`(`tlp`),
     UNIQUE INDEX `User_ewallet_key`(`ewallet`),
     PRIMARY KEY (`id`)
@@ -46,11 +47,12 @@ CREATE TABLE `CoinTransaction` (
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- AddForeignKey
-ALTER TABLE `Complaint` ADD CONSTRAINT `Complaint_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE Complaint DROP FOREIGN KEY Complaint_userId_fkey;
+ALTER TABLE Complaint ADD CONSTRAINT Complaint_userId_fkey FOREIGN KEY (userId) REFERENCES User(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
--- AddForeignKey
-ALTER TABLE `CoinExchange` ADD CONSTRAINT `CoinExchange_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE CoinExchange DROP FOREIGN KEY CoinExchange_userId_fkey;
+ALTER TABLE CoinExchange ADD CONSTRAINT CoinExchange_userId_fkey FOREIGN KEY (userId) REFERENCES User(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
--- AddForeignKey
-ALTER TABLE `CoinTransaction` ADD CONSTRAINT `CoinTransaction_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE CoinTransaction DROP FOREIGN KEY CoinTransaction_userId_fkey;
+ALTER TABLE CoinTransaction ADD CONSTRAINT CoinTransaction_userId_fkey FOREIGN KEY (userId) REFERENCES User(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
