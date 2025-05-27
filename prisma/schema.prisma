@@ -2,7 +2,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
-const DATABASE_URL="mysql://user1:1234@localhost:3306/gr_coins";
+const DATABASE_URL="mysql://root:1234@localhost:3306/gr_coins";
 
 datasource db {
   provider = "mysql"
