@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Bulan Mei 2025 pada 06.29
+-- Waktu pembuatan: 14 Jun 2025 pada 13.27
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -467,7 +467,7 @@ CREATE TABLE `_prisma_migrations` (
 --
 
 INSERT INTO `_prisma_migrations` (`id`, `checksum`, `finished_at`, `migration_name`, `logs`, `rolled_back_at`, `started_at`, `applied_steps_count`) VALUES
-('344637dd-afcc-4b31-b4be-2ea0c0317730', '68a6f581cf4b31390c0e06bb768af9167f1f866b03ad654eb34c8f687f208172', '2025-05-21 11:42:56.538', '20250521114256_init', NULL, NULL, '2025-05-21 11:42:56.288', 1);
+('b5ba3182-d404-4068-94fe-7d3a61cc7030', 'fb05ac7da40217f286ad473af411c0467f4c559f256b4f32951eca5f7834d4d4', '2025-06-11 18:45:56.323', '20250611184555_', NULL, NULL, '2025-06-11 18:45:55.911', 1);
 
 --
 -- Indexes for dumped tables
@@ -478,29 +478,29 @@ INSERT INTO `_prisma_migrations` (`id`, `checksum`, `finished_at`, `migration_na
 --
 ALTER TABLE `coinexchange`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `CoinExchange_userId_fkey` (`userId`);
+  ADD KEY `fk_coinexchange_userId` (`userId`);
 
 --
 -- Indeks untuk tabel `cointransaction`
 --
 ALTER TABLE `cointransaction`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `CoinTransaction_userId_fkey` (`userId`);
+  ADD KEY `cointransaction_userId_fkey` (`userId`);
 
 --
 -- Indeks untuk tabel `complaint`
 --
 ALTER TABLE `complaint`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `Complaint_userId_fkey` (`userId`);
+  ADD KEY `complaint_userId_fkey` (`userId`);
 
 --
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `User_tlp_key` (`tlp`),
-  ADD UNIQUE KEY `User_ewallet_key` (`ewallet`);
+  ADD UNIQUE KEY `user_tlp_key` (`tlp`),
+  ADD UNIQUE KEY `user_ewallet_key` (`ewallet`);
 
 --
 -- Indeks untuk tabel `_prisma_migrations`
@@ -516,7 +516,7 @@ ALTER TABLE `_prisma_migrations`
 -- AUTO_INCREMENT untuk tabel `coinexchange`
 --
 ALTER TABLE `coinexchange`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `cointransaction`
@@ -544,19 +544,19 @@ ALTER TABLE `user`
 -- Ketidakleluasaan untuk tabel `coinexchange`
 --
 ALTER TABLE `coinexchange`
-  ADD CONSTRAINT `CoinExchange_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_coinexchange_userId` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `cointransaction`
 --
 ALTER TABLE `cointransaction`
-  ADD CONSTRAINT `CoinTransaction_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `cointransaction_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `complaint`
 --
 ALTER TABLE `complaint`
-  ADD CONSTRAINT `Complaint_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `complaint_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
